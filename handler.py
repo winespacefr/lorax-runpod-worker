@@ -44,7 +44,8 @@ def handler(job: dict[str, Any]) -> dict[str, Any]:
     }
 
     if adapter_id := payload.get("adapter_id"):
-        body["adapter_id"] = adapter_id
+        parameters["adapter_id"] = adapter_id
+        parameters["adapter_source"] = "hub"
 
     response = httpx.post(
         f"{LORAX_URL}/generate", json=body, timeout=300
